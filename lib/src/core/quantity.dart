@@ -1,8 +1,8 @@
 import 'dart:math' as math;
-import 'dimensions.dart';
-import 'unit.dart';
 
+import 'dimensions.dart';
 import 'exception.dart';
+import 'unit.dart';
 
 Quantity _numToScalar(dynamic value) {
   if (value is Quantity) return value;
@@ -34,10 +34,9 @@ class Quantity implements Comparable<Quantity> {
     throw DimensionsException("Cannot convert quantity: $dimensions to ${this.dimensions}");
   }
 
-  Quantity inUnits(Unit units) => Quantity(valueIn(units), units);
-  Quantity to(Unit units) => inUnits(units);
+  Quantity inUnits(Unit units) => Quantity(_valueInUnits(units), units);
 
-  num valueIn(Unit other) {
+  num _valueInUnits(Unit other) {
     // Already in the requested units
     if (other == unit) return value;
 
@@ -49,13 +48,15 @@ class Quantity implements Comparable<Quantity> {
     return value * unit.scale / other.scale;
   }
 
+  operator [](Unit other) => inUnits(other);
+
   Quantity operator +(dynamic addend) => Quantity(
-        value + _numToScalar(addend).valueIn(unit),
+        value + _numToScalar(addend)._valueInUnits(unit),
         unit,
       );
 
   Quantity operator -(dynamic subtrahend) => Quantity(
-        value - _numToScalar(subtrahend).valueIn(unit),
+        value - _numToScalar(subtrahend)._valueInUnits(unit),
         unit,
       );
 
@@ -103,7 +104,7 @@ class Quantity implements Comparable<Quantity> {
   int get hashCode => Object.hashAll(<Object>[value, unit]);
 
   @override
-  int compareTo(dynamic q2) => value.compareTo(_numToScalar(q2).valueIn(unit));
+  int compareTo(dynamic q2) => value.compareTo(_numToScalar(q2)._valueInUnits(unit));
 
   @override
   String toString() => "$value${unit.symbolForQuantity}";
@@ -136,8 +137,8 @@ class QuantityPoint implements Comparable<QuantityPoint> {
   Quantity operator -(QuantityPoint other) => deltaFromZero - other.deltaFromZero;
   QuantityPoint operator +(Quantity other) => QuantityPoint(quantity + other, origin);
 
-  QuantityPoint inUnits(Unit units) => QuantityPoint(quantity.to(units), origin);
-  QuantityPoint to(Unit units) => inUnits(units);
+  QuantityPoint inUnits(Unit units) => QuantityPoint(quantity.inUnits(units), origin);
+  QuantityPoint operator [](Unit units) => inUnits(units);
 
   QuantityPoint withOrigin(QuantityOrigin origin) => QuantityPoint(deltaFrom(origin), origin);
   QuantityPoint withZeroOrigin() => QuantityPoint(deltaFromZero, QuantityOrigin.zero(origin.dimensions));
