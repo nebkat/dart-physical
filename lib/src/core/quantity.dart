@@ -48,7 +48,7 @@ class Quantity implements Comparable<Quantity> {
     return value * unit.scale / other.scale;
   }
 
-  operator [](Unit other) => inUnits(other);
+  Quantity operator [](Unit other) => inUnits(other);
 
   Quantity operator +(dynamic addend) => Quantity(
         value + _numToScalar(addend)._valueInUnits(unit),
