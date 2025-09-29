@@ -29,8 +29,6 @@ const Map<int, int> subscriptRuneMap = {
   0x2D: 0x208B, // '-' → '₋'
 };
 
-const fractionalSlash = 0x2044; // Fraction slash (⁄)
-
 /// Maps a number string to its superscript representation.
 String numToSuperscript(String num) => String.fromCharCodes(num.runes.map(
       (rune) => superscriptRuneMap[rune] ?? rune,
@@ -43,5 +41,5 @@ String numToSubscript(String num) => String.fromCharCodes(num.runes.map(
 String ratioToScript(String numerator, String denominator) {
   final numeratorSuperscript = numToSuperscript(numerator);
   final denominatorSubscript = numToSubscript(denominator);
-  return '$numeratorSuperscript\u2044$denominatorSubscript';
+  return '$numeratorSuperscript\u2044$denominatorSubscript'; // Fraction slash (⁄)
 }
