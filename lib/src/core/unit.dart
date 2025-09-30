@@ -231,7 +231,7 @@ class SiNamedUnit extends NamedUnit {
     super.spaceBeforeSymbol = true,
   });
 
-  _withPrefix(
+  NamedUnit _withPrefix(
     String symbolPrefix,
     String namePrefix,
     double scale,
