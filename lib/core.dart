@@ -1,4 +1,5 @@
-// TODO: Doc
+/// @nodoc
+/// A library containing the minimum core definitions i.e. [Quantity], [Unit] and [Dimensions].
 library;
 
 export 'src/core/dimensions.dart';

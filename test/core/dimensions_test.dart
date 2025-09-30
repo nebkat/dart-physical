@@ -24,15 +24,15 @@ void main() {
 
       const d2 = Dimensions.constant({Dimension.length: 2});
       expect(d2, isNotNull);
-      expect(d2[Dimension.length], 2);
+      expect(d2.map[Dimension.length], 2);
 
       final d3 = Dimensions({Dimension.time: -1});
       expect(d3, isNotNull);
-      expect(d3[Dimension.time], -1);
+      expect(d3.map[Dimension.time], -1);
 
       final d4 = Dimensions(d3.map);
       expect(d4, isNotNull);
-      expect(d4[Dimension.time], -1);
+      expect(d4.map[Dimension.time], -1);
     });
 
     test('equality', () {
@@ -49,8 +49,12 @@ void main() {
     });
 
     test('equalsSI', () {
-      final d1 =
-          Dimensions({Dimension.time: -1, Dimension.length: 1, Dimension.angle: 1, Dimension.amountOfSubstance: -2});
+      final d1 = Dimensions({
+        Dimension.time: -1,
+        Dimension.length: 1,
+        Dimension.angle: 1,
+        Dimension.amountOfSubstance: -2,
+      });
 
       final d2 = Dimensions({Dimension.amountOfSubstance: -2, Dimension.time: -1, Dimension.length: 1});
 
@@ -142,8 +146,12 @@ void main() {
     });
 
     test('operator ^', () {
-      final d1 =
-          Dimensions({Dimension.time: -1, Dimension.length: 1, Dimension.angle: 1, Dimension.amountOfSubstance: -2});
+      final d1 = Dimensions({
+        Dimension.time: -1,
+        Dimension.length: 1,
+        Dimension.angle: 1,
+        Dimension.amountOfSubstance: -2,
+      });
 
       final d2 = Dimensions({Dimension.amountOfSubstance: 2, Dimension.time: -1, Dimension.length: 2});
 
@@ -153,38 +161,42 @@ void main() {
 
       final d5 = Dimensions.empty();
 
-      final d6 =
-          Dimensions({Dimension.time: 1, Dimension.length: -1, Dimension.angle: -1, Dimension.amountOfSubstance: 2});
+      final d6 = Dimensions({
+        Dimension.time: 1,
+        Dimension.length: -1,
+        Dimension.angle: -1,
+        Dimension.amountOfSubstance: 2,
+      });
 
       expect(d1 ^ 1, d1);
       expect(d1 ^ 0, d5);
 
       final d2Squared = d2 ^ 2;
-      expect(d2Squared[Dimension.amountOfSubstance], 4);
-      expect(d2Squared[Dimension.time], -2);
-      expect(d2Squared[Dimension.length], 4);
+      expect(d2Squared.map[Dimension.amountOfSubstance], 4);
+      expect(d2Squared.map[Dimension.time], -2);
+      expect(d2Squared.map[Dimension.length], 4);
       expect(d2Squared ^ 0.5, d2);
 
       final d3Inverse = d3 ^ -1;
-      expect(d3Inverse[Dimension.length], 1);
-      expect(d3Inverse[Dimension.angle], -1);
-      expect(d3Inverse[Dimension.amountOfSubstance], 4);
+      expect(d3Inverse.map[Dimension.length], 1);
+      expect(d3Inverse.map[Dimension.angle], -1);
+      expect(d3Inverse.map[Dimension.amountOfSubstance], 4);
       final d3InverseCubed = d3Inverse ^ 3;
-      expect(d3InverseCubed[Dimension.length], 3);
-      expect(d3InverseCubed[Dimension.angle], -3);
-      expect(d3InverseCubed[Dimension.amountOfSubstance], 12);
+      expect(d3InverseCubed.map[Dimension.length], 3);
+      expect(d3InverseCubed.map[Dimension.angle], -3);
+      expect(d3InverseCubed.map[Dimension.amountOfSubstance], 12);
 
       final d4Sqrt = d4 ^ 0.5;
-      expect(d4Sqrt[Dimension.length], 0.5);
-      expect(d4Sqrt[Dimension.angle], -0.5);
-      expect(d4Sqrt[Dimension.amountOfSubstance], 2);
+      expect(d4Sqrt.map[Dimension.length], 0.5);
+      expect(d4Sqrt.map[Dimension.angle], -0.5);
+      expect(d4Sqrt.map[Dimension.amountOfSubstance], 2);
       expect(d4Sqrt ^ 2, d4);
 
       final d6Mod = d6 ^ -0.123;
-      expect(d6Mod[Dimension.time], -0.123);
-      expect(d6Mod[Dimension.length], 0.123);
-      expect(d6Mod[Dimension.angle], 0.123);
-      expect(d6Mod[Dimension.amountOfSubstance], -0.246);
+      expect(d6Mod.map[Dimension.time], -0.123);
+      expect(d6Mod.map[Dimension.length], 0.123);
+      expect(d6Mod.map[Dimension.angle], 0.123);
+      expect(d6Mod.map[Dimension.amountOfSubstance], -0.246);
     });
 
     test('inverse', () {
@@ -192,7 +204,6 @@ void main() {
         Dimension.time: 3,
         Dimension.length: 2,
         Dimension.angle: 1,
-        Dimension.amountOfSubstance: 0,
         Dimension.temperature: -1,
         Dimension.mass: -2,
         Dimension.electricCurrent: -3,
@@ -204,7 +215,6 @@ void main() {
         Dimension.time: -3,
         Dimension.length: -2,
         Dimension.angle: -1,
-        Dimension.amountOfSubstance: 0,
         Dimension.temperature: 1,
         Dimension.mass: 2,
         Dimension.electricCurrent: 3,

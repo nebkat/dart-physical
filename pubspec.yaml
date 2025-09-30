@@ -1,5 +1,5 @@
 name: physical
-version: 0.0.1
+version: 0.5.0
 description: A lightweight Dart library for dealing with physical quantities, units, and conversions.
 homepage: https://github.com/nebkat/dart-physical
 repository: https://github.com/nebkat/dart-physical
@@ -7,5 +7,5 @@ documentation: https://github.com/nebkat/dart-physical/blob/master/README.md
 environment:
   sdk: '>=3.3.0 <4.0.0'
 dev_dependencies:
-  test: ^1.26.0
+  test: '>=1.25.7 <2.0.0'
   lints: ^4.0.0

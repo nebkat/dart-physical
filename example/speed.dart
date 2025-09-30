@@ -1,36 +1,32 @@
-import 'package:physical/physical.dart';
+import 'package:physical/quantities.dart';
+import 'package:physical/system/si.dart' as si;
+import 'package:physical/system/international.dart' as intl;
 
 void main() {
   // How far we travelled
-  final distance = Length(240, mile);
+  final d = Length.of(240, intl.mile);
   // How long it took
-  final time = Time.hours(5);
-
+  final t = Time.of(5, si.hour);
   // How fast we were going
-  final speed = Speed.from(distance / time);
+  final s = Speed(d / t);
 
-  print(speed);
-  print(speed.inUnits(metre.kilo / hour));
-  print(speed.inUnits(metre / second).round());
+  print(s);
+  print(s[si.metre.kilo / si.hour]);
+  print(s[si.metre / si.second]);
 
-  print("===");
+  print("\n===");
 
   // How far will we travel in 30 minutes
-  final distance2 = speed * Time.minutes(30);
-  print(distance2); // 1440.0 [mi/h]·min - correct, but not very useful
-  print(distance2.inUnits(mile).round());
-  print(distance2.inUnits(metre).round());
+  final d2 = s * Time.of(30, si.minute);
+  print(d2); // 1440.0 [mi/h]·min - correct, but not very useful
+  print(d2[intl.mile].round());
+  print(d2[si.metre].round());
 
-  print("===");
+  print("\n===");
 
   // How long will it take to travel 100 miles at this speed?
-  final time2 = Time.from(distance / speed);
+  final time2 = Time(d / s);
   print(time2); // 5.0 mi/[mi/h] - correct, but not very useful
-  print(time2.inUnits(hour).round());
-  print(time2.inUnits(minute).round());
-
-  print("===");
-
-  final speed2 = speed * 2;
-  print(speed2);
+  print(time2[si.hour].round());
+  print(time2[si.minute].round());
 }

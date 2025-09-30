@@ -2,28 +2,28 @@ import '../core/unit.dart';
 import '../common/dimensions.dart';
 
 // Mass
-const pound = UnprefixableRealUnit(
+const pound = NamedUnit(
   symbol: "lb",
   singular: 'pound',
   plural: 'pounds',
   dimensions: mass,
   scale: 45359237 / 100000000,
 );
-const ounce = UnprefixableRealUnit(
+const ounce = NamedUnit(
   symbol: "oz",
   singular: 'ounce',
   plural: 'ounces',
   dimensions: mass,
   scale: 45359237 / 1600000000,
 );
-const dram = UnprefixableRealUnit(
+const dram = NamedUnit(
   symbol: "dr",
   singular: 'dram',
   plural: 'drams',
   dimensions: mass,
   scale: 45359237 / 25600000000,
 );
-const grain = UnprefixableRealUnit(
+const grain = NamedUnit(
   symbol: "gr",
   singular: 'grain',
   plural: 'grains',
@@ -33,63 +33,63 @@ const grain = UnprefixableRealUnit(
 
 // Length
 // https://en.wikipedia.org/wiki/United_States_customary_units#Length
-const yard = UnprefixableRealUnit(
+const yard = NamedUnit(
   symbol: "yd",
   singular: 'yard',
   plural: 'yards',
   dimensions: length,
   scale: 9144 / 10000,
 );
-const foot = UnprefixableRealUnit(
+const foot = NamedUnit(
   symbol: "ft",
   singular: 'foot',
   plural: 'feet',
   dimensions: length,
   scale: 9144 / 30000,
 );
-const inch = UnprefixableRealUnit(
+const inch = NamedUnit(
   symbol: "in",
   singular: 'inch',
   plural: 'inches',
   dimensions: length,
   scale: 9144 / 360000,
 );
-const pica = UnprefixableRealUnit(
+const pica = NamedUnit(
   symbol: "P",
   singular: 'pica',
   plural: 'picas',
   dimensions: length,
   scale: 9144 / 2160000,
 );
-const point = UnprefixableRealUnit(
+const point = NamedUnit(
   symbol: "p",
   singular: 'point',
   plural: 'points',
   dimensions: length,
   scale: 9144 / 25920000,
 );
-const mil = UnprefixableRealUnit(
+const mil = NamedUnit(
   symbol: "mil",
   singular: 'mil',
   plural: 'mils',
   dimensions: length,
   scale: 9144 / 36000000000,
 );
-const twip = UnprefixableRealUnit(
+const twip = NamedUnit(
   symbol: "twip",
   singular: 'twip',
   plural: 'twips',
   dimensions: length,
   scale: 9144 / 518400000,
 );
-const mile = UnprefixableRealUnit(
+const mile = NamedUnit(
   symbol: "mi",
   singular: 'mile',
   plural: 'miles',
   dimensions: length,
   scale: 16093440 / 10000,
 );
-const league = UnprefixableRealUnit(
+const league = NamedUnit(
   symbol: "le",
   singular: 'league',
   plural: 'leagues',
@@ -97,7 +97,7 @@ const league = UnprefixableRealUnit(
   scale: 48280320 / 10000,
 );
 
-const nauticalMile = UnprefixableRealUnit(
+const nauticalMile = NamedUnit(
   symbol: "nmi",
   singular: 'nautical mile',
   plural: 'nautical miles',
@@ -106,7 +106,7 @@ const nauticalMile = UnprefixableRealUnit(
 );
 
 // Speed
-const knot = UnprefixableRealUnit(
+const knot = NamedUnit(
   symbol: "kn",
   singular: 'knot',
   plural: 'knots',
@@ -116,7 +116,7 @@ const knot = UnprefixableRealUnit(
 
 // force
 // https://en.wikipedia.org/wiki/Poundal
-// TODO const poundal = UnprefixableRealUnit(symbol: "pdl", dimensions: force, scale: 45359237 / 100000000 * 9144 / 3600 / 3600);
+// TODO const poundal = NamedUnit(symbol: "pdl", dimensions: force, scale: 45359237 / 100000000 * 9144 / 3600 / 3600);
 // TODO inline constexpr struct poundal final : named_unit<"pdl", pound * foot / square(si::second)> {} poundal;
 
 // https://en.wikipedia.org/wiki/Pound_(force)
@@ -134,7 +134,7 @@ const knot = UnprefixableRealUnit(
 // clang-format on
 
 // Derived units
-const milePerHour = UnprefixableRealUnit(
+const milePerHour = NamedUnit(
   symbol: "mph",
   singular: 'mile per hour',
   plural: 'miles per hour',

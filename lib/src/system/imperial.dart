@@ -22,8 +22,13 @@ import '../common/dimensions.dart';
 //
 // // https://en.wikipedia.org/wiki/Imperial_units#Area
 
-const acre =
-    UnprefixableRealUnit(symbol: "ac", singular: 'acre', plural: 'acres', dimensions: area, scale: 4046.8564224);
+const acre = NamedUnit(
+  symbol: "ac",
+  singular: 'acre',
+  plural: 'acres',
+  dimensions: area,
+  scale: 4046.8564224,
+);
 // inline constexpr struct perch final : named_unit<"perch", square(rod)> {} perch;
 // inline constexpr struct rood final : named_unit<"rood", mag<40> * perch> {} rood;
 // inline constexpr struct acre final : named_unit<"acre", mag<4> * rood> {} acre;
@@ -43,7 +48,7 @@ const acre =
 // inline constexpr struct ton final : named_unit<"t", mag<2'240> * pound> {} ton;
 // inline constexpr auto long_ton = ton;
 
-const bushelImp = UnprefixableRealUnit(
+const bushelImp = NamedUnit(
   symbol: "bu",
   singular: 'bushel (imp)',
   plural: 'bushels (imp)',

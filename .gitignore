@@ -32,3 +32,6 @@ doc/api/
 # Flutter Version Manager
 .fvm/
 .fvmrc
+
+# Coverage
+coverage/

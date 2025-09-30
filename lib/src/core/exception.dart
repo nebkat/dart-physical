@@ -1,28 +1,36 @@
-/// The base class for all exceptions thrown in relation to quantities.
+import 'dimensions.dart';
+import 'unit.dart';
+
+/// Base class for all exceptions thrown in relation to quantities.
 class QuantityException implements Exception {
-  /// Constructs a QuantityException with an optional message\
   const QuantityException([this.message]);
 
-  /// The optional message to display.
   final String? message;
 
   @override
   String toString() {
-    if (message == null) return ((QuantityException)).toString();
-    return "${((QuantityException))}: $message";
+    if (message == null) return "QuantityException";
+    return "QuantityException: $message";
   }
 }
 
-
-/// This Exception is thrown when an attempt is made to perform an
-/// operation on a Quantity having unexpected or illegal dimensions.
+/// Thrown when an attempt is made to perform an operation on a [Quantity] with mismatched [Dimensions].
 class DimensionsException extends QuantityException {
-  /// Constructs a DimensionsException with an optional message.
   DimensionsException([super.message]);
+
+  DimensionsException.mismatch({
+    required Dimensions expected,
+    Unit? expectedUnits,
+    required Dimensions actual,
+    Unit? actualUnits,
+  }) : super(
+          "expected: $expected${expectedUnits == null ? '' : ' ($expectedUnits)'}, "
+          "actual: $actual${actualUnits == null ? '' : ' ($actualUnits)'}",
+        );
 
   @override
   String toString() {
-    if (message == null) return ((DimensionsException)).toString();
-    return "${((DimensionsException))}: $message";
+    if (message == null) return "DimensionsException";
+    return "DimensionsException: $message";
   }
 }
