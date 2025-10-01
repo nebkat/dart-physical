@@ -241,7 +241,7 @@ class SiNamedUnit extends NamedUnit {
         singular: '$namePrefix$singular',
         plural: '$namePrefix$plural',
         dimensions: dimensions,
-        scale: scale * scale,
+        scale: this.scale * scale,
       );
 
   /// A derived unit having the 10^24 prefix, yotta (Y).

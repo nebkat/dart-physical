@@ -1,4 +1,5 @@
 import 'package:physical/dimensions.dart';
+import 'package:physical/system/si.dart' as si;
 import 'package:test/test.dart';
 import 'package:physical/core.dart';
 
@@ -56,6 +57,55 @@ void main() {
       expect((b * a).scale, 8);
       expect((a / b).scale, 2);
       expect((b / a).scale, 0.5);
+    });
+
+    test('prefix', () {
+      // TODO: More precise?
+      const double epsilon = 1E-20;
+
+      expect(si.metre.yotta.scale, closeTo(1.0e24, epsilon));
+      expect(si.metre.zetta.scale, closeTo(1.0e21, epsilon));
+      expect(si.metre.exa.scale, closeTo(1.0e18, epsilon));
+      expect(si.metre.peta.scale, closeTo(1.0e15, epsilon));
+      expect(si.metre.tera.scale, closeTo(1.0e12, epsilon));
+      expect(si.metre.giga.scale, closeTo(1.0e9, epsilon));
+      expect(si.metre.mega.scale, closeTo(1.0e6, epsilon));
+      expect(si.metre.kilo.scale, closeTo(1.0e3, epsilon));
+      expect(si.metre.hecto.scale, closeTo(1.0e2, epsilon));
+      expect(si.metre.deca.scale, closeTo(1.0e1, epsilon));
+      expect(si.metre.scale, closeTo(1.0e0, epsilon));
+      expect(si.metre.deci.scale, closeTo(1.0e-1, epsilon));
+      expect(si.metre.centi.scale, closeTo(1.0e-2, epsilon));
+      expect(si.metre.milli.scale, closeTo(1.0e-3, epsilon));
+      expect(si.metre.micro.scale, closeTo(1.0e-6, epsilon));
+      expect(si.metre.nano.scale, closeTo(1.0e-9, epsilon));
+      expect(si.metre.pico.scale, closeTo(1.0e-12, epsilon));
+      expect(si.metre.femto.scale, closeTo(1.0e-15, epsilon));
+      expect(si.metre.atto.scale, closeTo(1.0e-18, epsilon));
+      expect(si.metre.zepto.scale, closeTo(1.0e-21, epsilon));
+      expect(si.metre.yocto.scale, closeTo(1.0e-24, epsilon));
+
+      expect(si.gram.yotta.scale, closeTo(1.0e21, epsilon));
+      expect(si.gram.zetta.scale, closeTo(1.0e18, epsilon));
+      expect(si.gram.exa.scale, closeTo(1.0e15, epsilon));
+      expect(si.gram.peta.scale, closeTo(1.0e12, epsilon));
+      expect(si.gram.tera.scale, closeTo(1.0e9, epsilon));
+      expect(si.gram.giga.scale, closeTo(1.0e6, epsilon));
+      expect(si.gram.mega.scale, closeTo(1.0e3, epsilon));
+      expect(si.gram.kilo.scale, closeTo(1.0e0, epsilon));
+      expect(si.gram.hecto.scale, closeTo(1.0e-1, epsilon));
+      expect(si.gram.deca.scale, closeTo(1.0e-2, epsilon));
+      expect(si.gram.scale, closeTo(1.0e-3, epsilon));
+      expect(si.gram.deci.scale, closeTo(1.0e-4, epsilon));
+      expect(si.gram.centi.scale, closeTo(1.0e-5, epsilon));
+      expect(si.gram.milli.scale, closeTo(1.0e-6, epsilon));
+      expect(si.gram.micro.scale, closeTo(1.0e-9, epsilon));
+      expect(si.gram.nano.scale, closeTo(1.0e-12, epsilon));
+      expect(si.gram.pico.scale, closeTo(1.0e-15, epsilon));
+      expect(si.gram.femto.scale, closeTo(1.0e-18, epsilon));
+      expect(si.gram.atto.scale, closeTo(1.0e-21, epsilon));
+      expect(si.gram.zepto.scale, closeTo(1.0e-24, epsilon));
+      expect(si.gram.yocto.scale, closeTo(1.0e-27, epsilon));
     });
   });
 }
