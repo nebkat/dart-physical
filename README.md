@@ -4,7 +4,9 @@ A lightweight Dart library for dealing with physical quantities, units, and conv
 
 Originally based on the [quantity](https://github.com/cooler-king/quantity) package by [cooler-king](https://github.com/cooler-king).
 
-[![pub package](https://img.shields.io/pub/v/physical.svg)](https://pub.dev/packages/physical) [![package:physical](https://github.com/nebkat/dart-physical/actions/workflows/physical.yml/badge.svg)](https://github.com/nebkat/dart-physical/actions/workflows/physical.yml) [![Coverage Status](https://coveralls.io/repos/github/nebkat/dart-physical/badge.svg)](https://coveralls.io/github/nebkat/dart-physical)
+![Dart version](https://img.shields.io/badge/Dart-3.3%2B-blue) [![License](https://img.shields.io/github/license/nebkat/dart-physical?cacheSeconds=3600&color=informational&label=License)](./LICENSE.md)
+
+[![Pub package](https://img.shields.io/pub/v/physical.svg)](https://pub.dev/packages/physical) [![Build status](https://github.com/nebkat/dart-physical/actions/workflows/physical.yml/badge.svg)](https://github.com/nebkat/dart-physical/actions/workflows/physical.yml) [![Coverage status](https://coveralls.io/repos/github/nebkat/dart-physical/badge.svg)](https://coveralls.io/github/nebkat/dart-physical)
 
 - Unit conversions (e.g. millimetres to inches)
 - Arithmetic operations (e.g. speed = distance / time)
