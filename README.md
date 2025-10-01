@@ -44,14 +44,14 @@ final distance = Length(speed * Time.of(2, si.hour)); // 36000 m
 
 // ----- UNIT CONVERSION -----
 
-print(s[si.metre.kilo / si.hour]); // 18.0 km/h
-print(d[si.metre.kilo].value);     // 36.0
+print(speed[si.metre.kilo / si.hour]); // 18.0 km/h
+print(distance[si.metre.kilo].value);  // 36.0
 
 // ----- SAFETY -----
 
-final invalid = l + t;        // 🚫 throws
-final invalid = l[si.second]; // 🚫 throws
-final invalid = Time(l);      // 🚫 throws
+final invalid = length + time;     // 🚫 throws
+final invalid = length[si.second]; // 🚫 throws
+final invalid = Time(length);      // 🚫 throws
 ```
 
 # Background
