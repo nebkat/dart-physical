@@ -1,6 +1,6 @@
-import 'package:physical/dimensions.dart';
-import 'package:physical/system/si.dart';
 import 'package:physical/core.dart';
+import 'package:physical/dimensions.dart';
+import 'package:physical/units/si.dart';
 import 'package:test/test.dart';
 
 void main() {

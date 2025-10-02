@@ -1,8 +1,8 @@
 import 'package:physical/core.dart';
 import 'package:physical/quantities.dart';
-import 'package:physical/system/si.dart' as si;
-import 'package:physical/system/international.dart' as intl;
-import 'package:physical/system/usc.dart' as usc;
+import 'package:physical/units/international.dart' as intl;
+import 'package:physical/units/si.dart' as si;
+import 'package:physical/units/usc.dart' as usc;
 
 void main() {
   construction();

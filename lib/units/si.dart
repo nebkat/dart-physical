@@ -1,6 +1,6 @@
-/// A library containing USC [Unit] definitions.
+/// A library containing SI [Unit] definitions.
 ///
 /// Can pollute the global namespace, so only import if required, or use a prefix on import.
 library;
 
-export '../src/system/usc.dart';
+export '../src/units/si.dart';

@@ -1,8 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:physical/src/system/si.dart';
-
-import '../common/units.dart';
 import 'dimensions.dart';
 import 'exception.dart';
 import 'unit.dart';
@@ -176,10 +173,12 @@ class Quantity implements Comparable<Quantity> {
   /// A ceiled copy of this quantity.
   Quantity ceil() => Quantity.of(value.ceil(), unit);
 
-  /// A copy of this quantity scaled by [other].
+  /// A copy of this quantity scaled by [scalar].
+  ///
+  /// [scalar] must be a scalar [Quantity] or a [num].
   ///
   /// See also [DimensionedQuantity.scaled].
-  Quantity scaled(Scalar other) => this * other;
+  Quantity scaled(Object scalar) => this * Dimensions.empty().checked(numToScalar(scalar));
 
   /// Whether this quantity is numerically smaller than [other] in common units.
   bool operator <(Quantity other) => compareTo(other) < 0;
@@ -420,64 +419,10 @@ extension type DimensionedQuantity<T>._(Quantity q) implements Quantity {
   T floor() => q.floor() as T;
   T ceil() => q.ceil() as T;
 
-  /// A copy of this quantity scaled by [other].
+  /// A copy of this quantity scaled by [scalar].
+  ///
+  /// [scalar] must be a scalar [Quantity] or a [num].
   ///
   /// Unlike [operator *], this operation is guaranteed to return the same type [T].
-  T scaled(Scalar other) => q.scaled(other) as T;
-}
-
-/// A dimensionless scalar [Quantity].
-///
-/// Specialization of [Quantity] that provides stronger typing on many operations
-/// that are guaranteed to return a scalar result.
-///
-/// Allows interaction with raw [num] values in addition, subtraction and comparison.
-extension type Scalar._(Quantity q) implements DimensionedQuantity<Scalar> {
-  Scalar(Quantity q) : q = Dimensions.empty().checked(q);
-  const Scalar.zero() : q = const Quantity.of(0, Unit.one);
-  const Scalar.identity() : q = const Quantity.of(1, Unit.one);
-  Scalar.of(num value, Unit unit) : this(Quantity.of(value, unit));
-  Scalar.one(num value) : this._(qty(value, Unit.one));
-  Scalar.percent(num value) : this._(qty(value, percent));
-  Scalar.perMille(num value) : this._(qty(value, perMille));
-  Scalar.partsPerMillion(num value) : this._(qty(value, partsPerMillion));
-  Scalar.partsPerBillion(num value) : this._(qty(value, partsPerBillion));
-
-  /// Adds two scalars, converting the addend to the units of this scalar.
-  ///
-  /// [addend] may be a [Quantity] or a raw [num].
-  Scalar operator +(Object addend) => q + numToScalar(addend) as Scalar;
-
-  /// Subtracts two scalars, converting the subtrahend to the units of this scalar.
-  ///
-  /// [subtrahend] may be a [Quantity] or a raw [num].
-  Scalar operator -(Object subtrahend) => q - numToScalar(subtrahend) as Scalar;
-
-  Scalar operator ^(Object exponent) => q ^ exponent as Scalar;
-
-  Scalar inverse() => q.inverse() as Scalar;
-  Scalar squared() => this ^ 2;
-  Scalar cubed() => this ^ 3;
-  Scalar sqrt() => this ^ (0.5);
-  Scalar cbrt() => this ^ (1 / 3);
-
-  /// Whether this scalar is numerically smaller than [other] in common units.
-  ///
-  /// [other] may be a [Quantity] or a raw [num].
-  bool operator <(Object other) => q < numToScalar(other);
-
-  /// Whether this scalar is numerically smaller than or equal to [other] in common units.
-  ///
-  /// [other] may be a [Quantity] or a raw [num].
-  bool operator <=(Object other) => q <= numToScalar(other);
-
-  /// Whether this scalar is numerically larger than [other] in common units.
-  ///
-  /// [other] may be a [Quantity] or a raw [num].
-  bool operator >(Object other) => q > numToScalar(other);
-
-  /// Whether this scalar is numerically larger than or equal to [other] in common units.
-  ///
-  /// [other] may be a [Quantity] or a raw [num].
-  bool operator >=(Object other) => q >= numToScalar(other);
+  T scaled(Object scalar) => q.scaled(scalar) as T;
 }

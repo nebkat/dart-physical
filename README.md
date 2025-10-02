@@ -28,7 +28,7 @@ dart pub add physical
 
 ```dart
 import 'package:physical/physical.dart';
-import 'package:physical/system/si.dart' as si;
+import 'package:physical/units/si.dart' as si;
 
 // ----- UNCHECKED -----
 
@@ -139,7 +139,7 @@ In addition to this, units hold information about their symbol and name for disp
 
 Many common units are already provided by the library:
 ```dart
-// Provided in 'package:physical/system/si.dart'
+// Provided in 'package:physical/units/si.dart'
 // Or in       'package:physical/units.dart'
 const second = SiNamedUnit(
   symbol: 's',

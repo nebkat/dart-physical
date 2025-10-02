@@ -1,5 +1,5 @@
+import '../common/dimensions.dart';
 import '../core/unit.dart';
-import 'dimensions.dart';
 
 const Unit one = Unit.one;
 

@@ -1,9 +1,9 @@
+import '../common/dimensions.dart';
 import '../core/quantity.dart';
 import '../core/unit.dart';
-import '../common/dimensions.dart';
 import 'si.dart';
 
-const bushelUs = NamedUnit(
+const bushel = NamedUnit(
   symbol: 'bu',
   singular: 'bushel (US)',
   plural: 'bushels (US)',

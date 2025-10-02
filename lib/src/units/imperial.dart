@@ -1,5 +1,5 @@
-import '../core/unit.dart';
 import '../common/dimensions.dart';
+import '../core/unit.dart';
 
 // const hand = RealUnit(symbol: "hh", dimensions: length, scale: );
 // const barleycorn = RealUnit(symbol: "Bc", dimensions: length);
@@ -48,8 +48,8 @@ const acre = NamedUnit(
 // inline constexpr struct ton final : named_unit<"t", mag<2'240> * pound> {} ton;
 // inline constexpr auto long_ton = ton;
 
-const bushelImp = NamedUnit(
-  symbol: "bu",
+const bushel = NamedUnit(
+  symbol: 'bu',
   singular: 'bushel (imp)',
   plural: 'bushels (imp)',
   dimensions: volume,
