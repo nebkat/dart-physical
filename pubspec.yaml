@@ -3,6 +3,7 @@ version: 0.6.0
 description: Lightweight library for dealing with physical quantities, units, and conversions.
 homepage: https://github.com/nebkat/dart-physical
 repository: https://github.com/nebkat/dart-physical
+issue_tracker: https://github.com/nebkat/dart-physical/issues
 documentation: https://github.com/nebkat/dart-physical/blob/master/README.md
 environment:
   sdk: '>=3.3.0 <4.0.0'
