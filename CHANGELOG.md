@@ -1,3 +1,6 @@
+### 0.6.1
+  * Add fixed precision functions Quantity.toPrecision and Quantity.toFixedAsStringNoTrailing
+
 ### 0.6.0
   * Renamed `systems` to `units`
   * Moved scalar units to `units/scalar.dart`
