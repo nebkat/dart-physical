@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import '../util.dart';
 import 'dimensions.dart';
 import 'exception.dart';
 import 'unit.dart';
@@ -173,6 +174,9 @@ class Quantity implements Comparable<Quantity> {
   /// A ceiled copy of this quantity.
   Quantity ceil() => Quantity.of(value.ceil(), unit);
 
+  /// A copy of this quantity with its value rounded to [fractionDigits] decimal places.
+  Quantity toPrecision(int fractionDigits) => Quantity.of(value.toPrecision(fractionDigits), unit);
+
   /// A copy of this quantity scaled by [scalar].
   ///
   /// [scalar] must be a scalar [Quantity] or a [num].
@@ -234,6 +238,10 @@ class Quantity implements Comparable<Quantity> {
 
   /// A decimal-point string representation of this quantity with its unit symbol.
   String toStringAsFixed(int fractionDigits) => "${value.toStringAsFixed(fractionDigits)}${unit.symbolForQuantity}";
+
+  /// A decimal-point string representation of this quantity (without trailing zeros) with its unit symbol.
+  String toStringAsFixedNoTrailing(int fractionDigits) =>
+      "${value.toStringAsFixedNoTrailing(fractionDigits)}${unit.symbolForQuantity}";
 
   /// The shortest string that correctly represents this quantity including its unit name.
   String toNameString() => "$value ${unit.nameForValue(value)}";
