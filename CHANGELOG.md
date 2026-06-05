@@ -1,3 +1,6 @@
+### 0.6.2
+  * Added `AreaPerTime` and `AnglePerTime` quantities
+
 ### 0.6.1
   * Add fixed precision functions Quantity.toPrecision and Quantity.toFixedAsStringNoTrailing
 
