@@ -167,6 +167,13 @@ extension type MassPerArea._(Quantity q) implements DimensionedQuantity<MassPerA
   MassPerArea.kilogramsPerSquareMetre(num value) : this._(Quantity.of(value, si.kilogramPerSquareMetre));
 }
 
+extension type AreaPerTime._(Quantity q) implements DimensionedQuantity<AreaPerTime> {
+  AreaPerTime(Quantity q) : q = areaPerTime.checked(q);
+  const AreaPerTime.zero() : q = const Quantity.of(0, si.squareMetrePerSecond);
+  AreaPerTime.of(num value, Unit unit) : this(Quantity.of(value, unit));
+  AreaPerTime.squareMetresPerSecond(num value) : this._(Quantity.of(value, si.squareMetrePerSecond));
+}
+
 extension type VolumePerTime._(Quantity q) implements DimensionedQuantity<VolumePerTime> {
   VolumePerTime(Quantity q) : q = volumePerTime.checked(q);
   const VolumePerTime.zero() : q = const Quantity.of(0, si.cubicMetrePerSecond);

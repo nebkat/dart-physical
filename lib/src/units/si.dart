@@ -311,6 +311,14 @@ const cubicMetre = DerivedUnit(
   scale: 1,
 );
 
+const squareMetrePerSecond = DerivedUnit(
+  symbol: 'm²/s',
+  singular: 'metre squared per second',
+  plural: 'metres squared per second',
+  dimensions: areaPerTime,
+  scale: 1,
+);
+
 const cubicMetrePerKilogram = DerivedUnit(
   symbol: 'm³/kg',
   singular: 'metre cubed per kilogram',

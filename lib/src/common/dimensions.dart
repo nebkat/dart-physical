@@ -16,6 +16,8 @@ const volume = Dimensions.constant({Dimension.length: 3});
 const speed = Dimensions.constant({Dimension.length: 1, Dimension.time: -1});
 const acceleration = Dimensions.constant({Dimension.length: 1, Dimension.time: -2});
 
+const areaPerTime = Dimensions.constant({Dimension.length: 2, Dimension.time: -1});
+
 const massPerVolume = Dimensions.constant({Dimension.mass: 1, Dimension.length: -3});
 const massPerTime = Dimensions.constant({Dimension.mass: 1, Dimension.time: -1});
 const massPerArea = Dimensions.constant({Dimension.mass: 1, Dimension.length: -2});
