@@ -167,6 +167,14 @@ extension type MassPerArea._(Quantity q) implements DimensionedQuantity<MassPerA
   MassPerArea.kilogramsPerSquareMetre(num value) : this._(Quantity.of(value, si.kilogramPerSquareMetre));
 }
 
+extension type AnglePerTime._(Quantity q) implements DimensionedQuantity<AnglePerTime> {
+  AnglePerTime(Quantity q) : q = anglePerTime.checked(q);
+  const AnglePerTime.zero() : q = const Quantity.of(0, si.radianPerSecond);
+  AnglePerTime.of(num value, Unit unit) : this(Quantity.of(value, unit));
+  AnglePerTime.radiansPerSecond(num value) : this._(Quantity.of(value, si.radianPerSecond));
+  AnglePerTime.degreesPerSecond(num value) : this._(Quantity.of(value, si.degreePerSecond));
+}
+
 extension type AreaPerTime._(Quantity q) implements DimensionedQuantity<AreaPerTime> {
   AreaPerTime(Quantity q) : q = areaPerTime.checked(q);
   const AreaPerTime.zero() : q = const Quantity.of(0, si.squareMetrePerSecond);

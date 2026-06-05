@@ -319,6 +319,21 @@ const squareMetrePerSecond = DerivedUnit(
   scale: 1,
 );
 
+const radianPerSecond = DerivedUnit(
+  symbol: 'rad/s',
+  singular: 'radian per second',
+  plural: 'radians per second',
+  dimensions: anglePerTime,
+  scale: 1,
+);
+const degreePerSecond = DerivedUnit(
+  symbol: '°/s',
+  singular: 'degree per second',
+  plural: 'degrees per second',
+  dimensions: anglePerTime,
+  scale: pi / 180,
+);
+
 const cubicMetrePerKilogram = DerivedUnit(
   symbol: 'm³/kg',
   singular: 'metre cubed per kilogram',
