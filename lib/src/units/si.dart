@@ -42,7 +42,7 @@ const ampere = SiNamedUnit(
 const kelvin = SiNamedUnit(
   symbol: 'K',
   singular: 'kelvin',
-  plural: 'kelvin',
+  plural: 'kelvins',
   dimensions: temperature,
   scale: 1,
 );
@@ -63,8 +63,8 @@ const candela = SiNamedUnit(
 
 const degreeCelsius = OffsetUnit(
   symbol: '°C',
-  singular: '',
-  plural: '',
+  singular: 'degree Celsius',
+  plural: 'degrees Celsius',
   dimensions: temperature,
   scale: 1,
   spaceBeforeSymbol: false,
