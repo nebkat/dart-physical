@@ -31,6 +31,12 @@ abstract class Unit {
   /// Whether to put a space before the symbol when displaying it.
   final bool spaceBeforeSymbol;
 
+  /// The origin that a [QuantityPoint] in this unit is implicitly relative to,
+  /// or `null` for a unit measured from absolute zero.
+  ///
+  /// See [OffsetUnit].
+  QuantityOrigin? get implicitOrigin => null;
+
   /// The symbol of the unit, wrapped in square brackets if it is not a [NamedUnit].
   String get safeSymbol => this is NamedUnit ? symbol : "[$symbol]";
 
@@ -213,6 +219,23 @@ class NamedUnit extends Unit {
     required super.plural,
     super.spaceBeforeSymbol = true,
   });
+}
+
+/// A [NamedUnit] measured from an [implicitOrigin] other than absolute zero,
+/// such as degrees Celsius or Fahrenheit.
+class OffsetUnit extends NamedUnit {
+  const OffsetUnit({
+    required this.implicitOrigin,
+    required super.dimensions,
+    super.scale = 1,
+    required super.symbol,
+    required super.singular,
+    required super.plural,
+    super.spaceBeforeSymbol = true,
+  });
+
+  @override
+  final QuantityOrigin implicitOrigin;
 }
 
 /// A known [Unit] with a specific name and symbol that can be prefixed with SI prefixes.

@@ -1,6 +1,7 @@
 import 'package:physical/core.dart';
 import 'package:physical/dimensions.dart';
 import 'package:physical/units/si.dart' as si;
+import 'package:physical/units/usc.dart' as usc;
 import 'package:test/test.dart';
 
 void main() {
@@ -106,6 +107,15 @@ void main() {
       expect(si.gram.atto.scale, closeTo(1.0e-21, epsilon));
       expect(si.gram.zepto.scale, closeTo(1.0e-24, epsilon));
       expect(si.gram.yocto.scale, closeTo(1.0e-27, epsilon));
+    });
+
+    test('implicitOrigin', () {
+      expect(si.degreeCelsius.implicitOrigin, si.zerothDegreeCelsius);
+      expect(usc.degreeFahrenheit.implicitOrigin, usc.zerothDegreeFahrenheit);
+
+      expect(si.kelvin.implicitOrigin, isNull);
+      expect(si.metre.implicitOrigin, isNull);
+      expect((si.degreeCelsius / si.second).implicitOrigin, isNull);
     });
   });
 }

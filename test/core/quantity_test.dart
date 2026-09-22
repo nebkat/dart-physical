@@ -77,6 +77,45 @@ void main() {
     });
   });
 
+  group('QuantityOrigin', () {
+    test('equality compares the distance from absolute zero', () {
+      expect(QuantityOrigin(Quantity.of(273.15, kelvin)), zerothDegreeCelsius);
+      expect(QuantityOrigin(Quantity.of(255.372, kelvin)), isNot(zerothDegreeCelsius));
+    });
+
+    test('isZero', () {
+      expect(absoluteZeroKelvin.isZero, isTrue);
+      expect(QuantityOrigin.zero(temperature).isZero, isTrue);
+      expect(zerothDegreeCelsius.isZero, isFalse);
+    });
+
+    test('toString', () {
+      expect(zerothDegreeCelsius.toString(), '273.15 K');
+    });
+  });
+
+  group('QuantityPoint', () {
+    test('toString omits an origin the unit implies', () {
+      expect((zerothDegreeCelsius + Quantity.of(20, degreeCelsius)).toString(), '20°C');
+      expect((absoluteZeroKelvin + Quantity.of(293.15, kelvin)).toString(), '293.15 K');
+      expect((QuantityOrigin.zero(temperature) + Quantity.of(293.15, kelvin)).toString(), '293.15 K');
+    });
+
+    test('toString shows an origin the unit does not imply', () {
+      final point = zerothDegreeCelsius + Quantity.of(20, degreeCelsius);
+
+      expect(point.inUnits(kelvin).toString(), '20 K @ 273.15 K');
+    });
+
+    test('toStringAsFixed', () {
+      final point = zerothDegreeCelsius + Quantity.of(20.456, degreeCelsius);
+
+      expect(point.toStringAsFixed(1), '20.5°C');
+      expect(point.toStringAsFixedNoTrailing(5), '20.456°C');
+      expect(point.inUnits(kelvin).toStringAsFixed(0), '20 K @ 273 K');
+    });
+  });
+
   group('numToScalar', () {
     test('converts int and double to Scalar', () {
       final s1 = numToScalar(5);

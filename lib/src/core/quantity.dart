@@ -296,6 +296,9 @@ class QuantityOrigin implements QuantityPointOrOrigin {
   @override
   Quantity get deltaFromZero => quantity;
 
+  /// Whether this origin is absolute zero itself.
+  bool get isZero => quantity.value == 0;
+
   /// Creates a [QuantityPoint] by adding a [Quantity] to this origin.
   ///
   /// [addend] must have the same dimensions as this origin.
@@ -318,6 +321,20 @@ class QuantityOrigin implements QuantityPointOrOrigin {
     }
     return other;
   }
+
+  /// Test whether this origin is equal to [other].
+  ///
+  /// Origins are only equal if they are the same distance from absolute zero,
+  /// regardless of the units that distance is expressed in.
+  @override
+  bool operator ==(Object other) => other is QuantityOrigin && quantity == other.quantity;
+
+  @override
+  int get hashCode => quantity.hashCode;
+
+  /// The shortest string that correctly represents this origin's distance from absolute zero.
+  @override
+  String toString() => quantity.toString();
 }
 
 /// A immutable [Quantity] relative to a [QuantityOrigin].
@@ -393,6 +410,33 @@ class QuantityPoint implements QuantityPointOrOrigin, Comparable<QuantityPoint> 
 
   @override
   int compareTo(QuantityPoint other) => deltaFromZero.compareTo(other.deltaFromZero);
+
+  /// Whether [origin] carries no information beyond what [quantity] already shows.
+  bool get _originIsImplied => origin.isZero || origin == quantity.unit.implicitOrigin;
+
+  String _originSuffix(String Function(Quantity origin) format) =>
+      _originIsImplied ? '' : ' @ ${format(origin.quantity)}';
+
+  /// The shortest string that correctly represents this quantity point as its quantity
+  /// relative to [origin], appending the origin where the unit does not imply it.
+  @override
+  String toString() => '$quantity${_originSuffix((origin) => origin.toString())}';
+
+  /// A decimal-point string representation of this quantity point with its unit symbol.
+  String toStringAsFixed(int fractionDigits) => '${quantity.toStringAsFixed(fractionDigits)}'
+      '${_originSuffix((origin) => origin.toStringAsFixed(fractionDigits))}';
+
+  /// A decimal-point string representation of this quantity point (without trailing zeros)
+  /// with its unit symbol.
+  String toStringAsFixedNoTrailing(int fractionDigits) => '${quantity.toStringAsFixedNoTrailing(fractionDigits)}'
+      '${_originSuffix((origin) => origin.toStringAsFixedNoTrailing(fractionDigits))}';
+
+  /// The shortest string that correctly represents this quantity point including its unit name.
+  String toNameString() => '${quantity.toNameString()}${_originSuffix((origin) => origin.toNameString())}';
+
+  /// A decimal-point string representation of this quantity point with its unit name.
+  String toNameStringAsFixed(int fractionDigits) => '${quantity.toNameStringAsFixed(fractionDigits)}'
+      '${_originSuffix((origin) => origin.toNameStringAsFixed(fractionDigits))}';
 }
 
 /// An [extension type](https://dart.dev/language/extension-types) wrapper

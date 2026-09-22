@@ -61,13 +61,14 @@ const candela = SiNamedUnit(
   scale: 1,
 );
 
-const degreeCelsius = NamedUnit(
+const degreeCelsius = OffsetUnit(
   symbol: '°C',
   singular: '',
   plural: '',
   dimensions: temperature,
   scale: 1,
   spaceBeforeSymbol: false,
+  implicitOrigin: zerothDegreeCelsius,
 );
 
 const absoluteZeroKelvin = QuantityOrigin(Quantity.zero(kelvin));

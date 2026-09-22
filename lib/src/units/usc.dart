@@ -10,13 +10,14 @@ const bushel = NamedUnit(
   dimensions: volume,
   scale: 0.03523907016688,
 );
-const degreeFahrenheit = DerivedUnit(
+const degreeFahrenheit = OffsetUnit(
   symbol: '°F',
   singular: 'degree Fahrenheit',
   plural: 'degrees Fahrenheit',
   dimensions: temperature,
   scale: 5 / 9,
   spaceBeforeSymbol: false,
+  implicitOrigin: zerothDegreeFahrenheit,
 );
 const zerothDegreeFahrenheit = QuantityOrigin(
   Quantity.of(2298.35 / 9, kelvin),
