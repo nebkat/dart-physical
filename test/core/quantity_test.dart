@@ -77,6 +77,38 @@ void main() {
     });
   });
 
+  group('Quantity equality', () {
+    test('holds across units, in both directions', () {
+      final metres = Quantity.of(1, metre);
+      final millimetres = Quantity.of(1000, metre.milli);
+
+      expect(metres, millimetres);
+      expect(millimetres, metres);
+      expect(metres.hashCode, millimetres.hashCode);
+      expect({metres, millimetres}, hasLength(1));
+    });
+
+    test('a scalar is not equal to the num it represents', () {
+      const Object five = 5;
+
+      expect(Quantity.of(5, Unit.one) == five, isFalse);
+      expect(five == Quantity.of(5, Unit.one), isFalse);
+
+      expect(Scalar.one(5) < 6, isTrue);
+      expect(Scalar.one(5).value, 5);
+    });
+
+    test('mismatched dimensions are unequal rather than an error', () {
+      final metres = Quantity.of(1, metre);
+      final seconds = Quantity.of(1, second);
+
+      expect(metres, isNot(seconds));
+      expect([metres].contains(seconds), isFalse);
+      expect(() => metres.compareTo(seconds), throwsA(isA<DimensionsException>()));
+      expect(() => metres < seconds, throwsA(isA<DimensionsException>()));
+    });
+  });
+
   group('QuantityOrigin', () {
     test('equality compares the distance from absolute zero', () {
       expect(QuantityOrigin(Quantity.of(273.15, kelvin)), zerothDegreeCelsius);
@@ -91,6 +123,25 @@ void main() {
 
     test('toString', () {
       expect(zerothDegreeCelsius.toString(), '273.15 K');
+    });
+  });
+
+  group('QuantityPoint equality', () {
+    test('holds across units and origins', () {
+      final celsius = zerothDegreeCelsius + Quantity.of(20, degreeCelsius);
+      final kelvins = absoluteZeroKelvin + Quantity.of(293.15, kelvin);
+
+      expect(celsius, kelvins);
+      expect(kelvins, celsius);
+      expect(celsius.hashCode, kelvins.hashCode);
+      expect({celsius, kelvins}, hasLength(1));
+    });
+
+    test('mismatched dimensions are unequal rather than an error', () {
+      final degrees = zerothDegreeCelsius + Quantity.of(20, degreeCelsius);
+      final distance = QuantityOrigin.zero(length) + Quantity.of(20, metre);
+
+      expect(degrees, isNot(distance));
     });
   });
 

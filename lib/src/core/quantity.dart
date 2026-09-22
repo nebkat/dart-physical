@@ -217,20 +217,26 @@ class Quantity implements Comparable<Quantity> {
   /// Quantities are only equal if they have the same dimensions and represent
   /// the same value after accounting for potential different unit scaling.
   @override
-  bool operator ==(Object other) {
-    if (isScalar && (other is num)) return valueSI == other;
-    if (other is! Quantity) return false;
-    return compareTo(other) == 0;
-  }
+  bool operator ==(Object other) => other is Quantity && dimensions == other.dimensions && valueSI == other.valueSI;
 
   @override
-  int get hashCode => Object.hashAll(<Object>[value, unit]);
+  int get hashCode => Object.hash(valueSI, dimensions);
 
-  /// Compares this quantity to [other] in common units.
+  /// Compares this quantity to [other] in SI base units.
   ///
   /// See [num.compareTo].
   @override
-  int compareTo(Quantity other) => value.compareTo(numToScalar(other)._valueInUnits(unit));
+  int compareTo(Quantity other) {
+    if (dimensions != other.dimensions) {
+      throw DimensionsException.mismatch(
+        expected: dimensions,
+        expectedUnits: unit,
+        actual: other.dimensions,
+        actualUnits: other.unit,
+      );
+    }
+    return valueSI.compareTo(other.valueSI);
+  }
 
   /// The shortest string that correctly represents this quantity including its unit symbol.
   @override
@@ -399,14 +405,15 @@ class QuantityPoint implements QuantityPointOrOrigin, Comparable<QuantityPoint> 
   @override
   Quantity get deltaFromZero => quantity + origin.quantity;
 
+  /// Test whether this quantity point is equal to [other].
+  ///
+  /// Quantity points are equal if they are the same distance from absolute zero,
+  /// regardless of the units and origin each is expressed relative to.
   @override
-  bool operator ==(Object other) {
-    if (other is! QuantityPoint) return false;
-    return compareTo(other) == 0;
-  }
+  bool operator ==(Object other) => other is QuantityPoint && deltaFromZero == other.deltaFromZero;
 
   @override
-  int get hashCode => Object.hashAll(<Object>[quantity, origin]);
+  int get hashCode => deltaFromZero.hashCode;
 
   @override
   int compareTo(QuantityPoint other) => deltaFromZero.compareTo(other.deltaFromZero);

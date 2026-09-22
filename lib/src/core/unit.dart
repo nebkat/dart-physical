@@ -179,7 +179,7 @@ abstract class Unit {
   }
 
   @override
-  int get hashCode => Object.hashAll([symbol, dimensions, scale]);
+  int get hashCode => Object.hash(scale, dimensions);
 
   @override
   String toString() => symbol;
