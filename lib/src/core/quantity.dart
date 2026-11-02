@@ -242,8 +242,10 @@ class Quantity implements Comparable<Quantity> {
   @override
   String toString() => "$value${unit.symbolForQuantity}";
 
-  /// A decimal-point string representation of this quantity with its unit symbol.
-  String toStringAsFixed(int fractionDigits) => "${value.toStringAsFixed(fractionDigits)}${unit.symbolForQuantity}";
+  /// A decimal-point string representation of this quantity with its unit symbol, without
+  /// the sign of a value that rounds to zero.
+  String toStringAsFixed(int fractionDigits) =>
+      "${value.toStringAsFixedNoNegativeZero(fractionDigits)}${unit.symbolForQuantity}";
 
   /// A decimal-point string representation of this quantity (without trailing zeros) with its unit symbol.
   String toStringAsFixedNoTrailing(int fractionDigits) =>
@@ -254,7 +256,7 @@ class Quantity implements Comparable<Quantity> {
 
   /// A decimal-point string representation of this quantity with its unit name.
   String toNameStringAsFixed(int fractionDigits) =>
-      "${value.toStringAsFixed(fractionDigits)} ${unit.nameForValue(value)}";
+      "${value.toStringAsFixedNoNegativeZero(fractionDigits)} ${unit.nameForValue(value)}";
 
   num _valueInUnits(Unit other) {
     // Already in the requested units
