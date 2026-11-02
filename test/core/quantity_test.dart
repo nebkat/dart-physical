@@ -14,6 +14,14 @@ void main() {
       expect(Quantity.of(-10, metre).toStringAsFixedNoTrailing(1), '-10 m');
     });
 
+    test('toStringAsFixed drops the sign of a value that rounds to zero', () {
+      expect(Quantity.of(-0.004, metre).toStringAsFixed(2), '0.00 m');
+      expect(Quantity.of(-0.4, metre).toStringAsFixed(0), '0 m');
+      expect(Quantity.of(-0.005, metre).toStringAsFixed(2), '-0.01 m');
+      expect(Quantity.of(-0.004, metre).toNameStringAsFixed(2), '0.00 metres');
+      expect((zerothDegreeCelsius + Quantity.of(-0.04, degreeCelsius)).toStringAsFixed(1), '0.0°C');
+    });
+
     test('dimensions', () {
       final a = Quantity.of(1, metre);
 
