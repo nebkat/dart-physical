@@ -5,6 +5,15 @@ import 'package:test/test.dart';
 
 void main() {
   group('Quantity', () {
+    test('toStringAsFixedNoTrailing drops the sign of a value that rounds to zero', () {
+      expect(Quantity.of(-0.0, metre).toStringAsFixedNoTrailing(2), '0 m');
+      expect(Quantity.of(-0.004, metre).toStringAsFixedNoTrailing(2), '0 m');
+      expect(Quantity.of(-0.4, metre).toStringAsFixedNoTrailing(0), '0 m');
+      expect(Quantity.of(-0.005, metre).toStringAsFixedNoTrailing(2), '-0.01 m');
+      expect(Quantity.of(-0.6, metre).toStringAsFixedNoTrailing(0), '-1 m');
+      expect(Quantity.of(-10, metre).toStringAsFixedNoTrailing(1), '-10 m');
+    });
+
     test('dimensions', () {
       final a = Quantity.of(1, metre);
 

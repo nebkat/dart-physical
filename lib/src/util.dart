@@ -16,9 +16,12 @@ extension NumberExtension on num {
     return (this * mod).round() / mod;
   }
 
-  /// A decimal-point string-representation of this number without trailing zeros.
+  /// A decimal-point string-representation of this number without trailing zeros, or the
+  /// sign of a value that rounds to zero.
   ///
   /// See [num.toStringAsFixed].
-  String toStringAsFixedNoTrailing(int fractionDigits) =>
-      toStringAsFixed(fractionDigits).replaceFirst(RegExp(r'(?:(?<=\.\d+)|\.)0+$'), '');
+  String toStringAsFixedNoTrailing(int fractionDigits) {
+    final fixed = toStringAsFixed(fractionDigits).replaceFirst(RegExp(r'(?:(?<=\.\d+)|\.)0+$'), '');
+    return fixed == '-0' ? '0' : fixed;
+  }
 }
