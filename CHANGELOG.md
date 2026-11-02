@@ -1,3 +1,7 @@
+### 0.7.1
+  * Formatted quantities no longer show the sign of a value that rounds to zero (`-0`, `-0.00`)
+  * Added `package:physical/extensions.dart`, exporting the `num` formatting extensions such as `toStringAsFixedNoNegativeZero`
+
 ### 0.7.0
   * **Breaking**: `Quantity` and `Unit` hash codes are now consistent with equality, as required by
     `Object.hashCode`. Equal quantities expressed in different units (`1 m` and `1000 mm`) previously
